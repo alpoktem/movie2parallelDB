@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AudioDoc name="eng0006" path="eng0006.wav">
+<ProcList>
+<Proc name="vrbs_align.eng" version="1.3" editor="Vocapia Research"/>
+</ProcList>
+<ChannelList>
+<Channel num="1" sigdur="1.52" spdur="1.51" nw="3" tconf="0.99"/>
+</ChannelList>
+<SegmentList>
+<SpeechSegment ch="1" stime="0.01" etime="1.52" lang="eng" tconf="0.99">
+<Word id="1" stime="0.01" dur="0.34" conf="0.990"> Doctor </Word>
+<Word id="2" stime="0.35" dur="0.65" conf="0.990"> Benjamin </Word>
+<Word id="3" stime="1.10" dur="0.42" conf="0.990"> McKenna </Word>
+</SpeechSegment>
+</SegmentList>
+</AudioDoc>

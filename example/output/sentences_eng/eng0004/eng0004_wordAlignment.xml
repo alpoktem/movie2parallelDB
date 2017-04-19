@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AudioDoc name="eng0004" path="eng0004.wav">
+<ProcList>
+<Proc name="vrbs_align.eng" version="1.3" editor="Vocapia Research"/>
+</ProcList>
+<ChannelList>
+<Channel num="1" sigdur="2.54" spdur="2.40" nw="11" tconf="0.83"/>
+</ChannelList>
+<SegmentList>
+<SpeechSegment ch="1" stime="0.14" etime="2.54" lang="eng" tconf="0.83">
+<Word id="1" stime="0.14" dur="0.11" conf="0.100"> If </Word>
+<Word id="2" stime="0.25" dur="0.10" conf="0.100"> you </Word>
+<Word id="3" stime="0.38" dur="0.21" conf="0.990"> gave </Word>
+<Word id="4" stime="0.59" dur="0.11" conf="0.990"> me </Word>
+<Word id="5" stime="0.70" dur="0.20" conf="0.990"> your </Word>
+<Word id="6" stime="0.90" dur="0.31" conf="0.990"> name </Word>
+<Word id="7" stime="1.21" dur="0.21" conf="0.990"> that </Word>
+<Word id="8" stime="1.68" dur="0.17" conf="0.990"> might </Word>
+<Word id="9" stime="1.89" dur="0.09" conf="0.990"> be </Word>
+<Word id="10" stime="1.98" dur="0.08" conf="0.990"> a </Word>
+<Word id="11" stime="2.06" dur="0.48" conf="0.990"> start </Word>
+</SpeechSegment>
+</SegmentList>
+</AudioDoc>

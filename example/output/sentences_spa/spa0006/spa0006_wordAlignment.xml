@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AudioDoc name="spa0006" path="spa0006.wav">
+<ProcList>
+<Proc name="vrbs_align.spa" version="1.3" editor="Vocapia Research"/>
+</ProcList>
+<ChannelList>
+<Channel num="1" sigdur="0.58" spdur="0.57" nw="3" tconf="0.99"/>
+</ChannelList>
+<SegmentList>
+<SpeechSegment ch="1" stime="0.01" etime="0.58" lang="spa" tconf="0.99">
+<Word id="1" stime="0.01" dur="0.10" conf="0.990"> Me </Word>
+<Word id="2" stime="0.17" dur="0.23" conf="0.990"> llamo </Word>
+<Word id="3" stime="0.40" dur="0.18" conf="0.990"> McKenna </Word>
+</SpeechSegment>
+</SegmentList>
+</AudioDoc>

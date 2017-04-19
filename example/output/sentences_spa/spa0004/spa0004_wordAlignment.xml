@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AudioDoc name="spa0004" path="spa0004.wav">
+<ProcList>
+<Proc name="vrbs_align.spa" version="1.3" editor="Vocapia Research"/>
+</ProcList>
+<ChannelList>
+<Channel num="1" sigdur="4.14" spdur="3.49" nw="9" tconf="0.99"/>
+</ChannelList>
+<SegmentList>
+<SpeechSegment ch="1" stime="0.01" etime="0.92" lang="spa" tconf="0.99">
+<Word id="1" stime="0.01" dur="0.32" conf="0.990"> Pues </Word>
+<Word id="2" stime="0.41" dur="0.21" conf="0.990"> yo </Word>
+</SpeechSegment>
+<SpeechSegment ch="1" stime="1.56" etime="4.14" lang="spa" tconf="0.99">
+<Word id="3" stime="1.86" dur="0.25" conf="0.990"> Diga </Word>
+<Word id="4" stime="2.11" dur="0.11" conf="0.990"> me </Word>
+<Word id="5" stime="2.22" dur="0.16" conf="0.990"> su </Word>
+<Word id="6" stime="2.48" dur="0.43" conf="0.990"> nombre </Word>
+<Word id="7" stime="3.02" dur="0.15" conf="0.990"> y </Word>
+<Word id="8" stime="3.17" dur="0.50" conf="0.990"> podemos </Word>
+<Word id="9" stime="3.67" dur="0.47" conf="0.990"> empezar </Word>
+</SpeechSegment>
+</SegmentList>
+</AudioDoc>
