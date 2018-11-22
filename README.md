@@ -1,5 +1,8 @@
 # movie2parallelDB
-Automated parallel speech database with prosodic features extractor from dubbed movies
+Automated prosodically annotated parallel speech database extraction using dubbed movies.
+(Instructions below are for an earlier version of the library which should still work. The latest version uses the scripts `subsegment_movie.py` and `movie2parallelDB.py`. It is not documented yet for time constraints. If you are interested drop the author a line. )
+
+## Usage
 
 * Inputs: 
 	- Movie audio in language1 - `<audio_1>`
@@ -60,7 +63,19 @@ Sample movie data in example directory is from the film "The Man Who Knew Too Mu
 
 ## Citing
 
-This work is published in BUCC workshop under ACL 2017: [Paper link](https://repositori.upf.edu/handle/10230/32716)
+Final version of this library is explained in Iberspeech 2018: [Paper link](https://www.isca-speech.org/archive/IberSPEECH_2018/abstracts/IberS18_P1-1_Oktem.html)
+	
+	@inproceedings{Öktem2018,
+		author={Alp Öktem and Mireia Farrús and Antonio Bonafonte},
+		title={{Bilingual Prosodic Dataset Compilation for Spoken Language Translation}},
+		year=2018,
+		booktitle={Proc. IberSPEECH 2018},
+		pages={20--24},
+		doi={10.21437/IberSPEECH.2018-5},
+		url={http://dx.doi.org/10.21437/IberSPEECH.2018-5}	
+	}
+
+This work is originally introduced in BUCC workshop under ACL 2017: [Paper link](https://repositori.upf.edu/handle/10230/32716)
 
 	@inproceedings{movie2parallelDB,
 		author = {Alp Oktem and Mireia Farrus and Leo Wanner},
