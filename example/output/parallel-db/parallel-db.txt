@@ -1,6 +1,0 @@
-PAIR.ID	LANG1	LANG2
-1	Yo soy Ambrose Chappell . 	I am Ambrose Chappell . 
-2	¿Qué se le ofrece ? 	What can I do for you ? 
-3	Pues , yo-- Diga me su nombre y podemos empezar . 	If you gave me your name , that might be a start . 
-4	Me llamo McKenna . 	My name is McKenna . 
-5	Soy el Doctor Benjamín McKenna . 	Doctor Benjamin McKenna . 
