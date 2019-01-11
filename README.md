@@ -6,7 +6,7 @@ Dubbed media content is a valuable resource for generating prosodically rich par
 
 A parallel audio corpus is obtained in three stages: (1) a monolingual step, where audio+text pairs are extracted from the movie in both languages using transcripts and cues in subtitles, (2) paralinguistic feature annotation (speaker information and prosody) and (3) alignment of monolingual material to extract the bilingual segments. Figure below illustrates the whole process on an example portion of a movie.
 
-![movie2parallelDB pipeline illustrated](https://raw.githubusercontent.com/alpoktem/movie2parallelDB/master/data/movie2parallelDB-example_pipeline.png =250x)
+<p align="center"><img src="https://raw.githubusercontent.com/alpoktem/movie2parallelDB/master/data/movie2parallelDB-example_pipeline.png" width="500"></p>
 
 ## Requirements
 
@@ -22,7 +22,7 @@ Binary and model paths of MFA and Praat should be set in `src/paths.py`.
 
 ## Raw data preparation
 
-`movie2parallelDB` works with `wav` or `mp3` format audio files and `srt` format subtitles in both languages (original and dubbed) of the media file. MKV type video files usually contain all audio tracks and subtitle information. `mkvinfo` can be used to get track information on the video file. Once track id's are known audio tracks can be extracted using `mkvextract`: 
+`movie2parallelDB` works with `wav` or `mp3` format audio files and `srt` format subtitles in both languages (original and dubbed) of the media file. MKV type video files often contain multiple audio tracks and subtitle information. `mkvinfo` can be used to get track information on the video file. Once track id's are known, audio tracks can be extracted using `mkvextract` tool of [mkvtoolnix](https://mkvtoolnix.download/): 
 
 `mkvextract <movie-mkv-file> tracks 1:movie_spa.aac 2:movie_eng.aac 3:sub_spa.srt 4:sub_eng.srt`
 
@@ -33,16 +33,27 @@ In order to obtain mp3 format audio `ffmpeg` can be used:
 
 Make sure that subtitles and audio match in both timing and transcription. Dubbing scripts might differ from subtitle transcripts. 
 
+Speaker labelling is made possible with the use of script files. Script files contain a speaker turn at each line with the speaker name followed by a colon and then the line. Example of a script can be seen in the figure above. 
+
 ## Run
 
-`movie2parallelDB`
+Monolingual segment extraction can be performed with the script `subsegment_movie.py`:
 
-Monolingual segments can be generated using:
+`python src/subsegment_movie.py -a <audio_eng> -s <sub_eng> -o <output_directory> -l eng -f <audio_format:wav|mp3> -c <script_eng>`
 
-Sample data is placed in `example` directory. Run `subseg_run.sh` to test the system on the example data.
+Alternatively, a batch of files specified in a text file can be given to process. Each line in the file should contain the tab separated columns: movie_id, audio_path, srt_path, script_path (optional: put NA if not available), language_id. 
+
+`python src/subsegment_movie.py -i <process-list_eng> -o <output_directory> -l eng -f <audio_format:wav|mp3> -c <script_eng>`
+
+Parallel corpus generation is performed using parallel text files that contain path information in the two languages:
+
+`python src/movie2parallelDB.py -e <process-list_eng> -s <process-list_spa> -o <output_directory> -f <audio_format:wav|mp3>`
+
+This process executes the monolingual process for both languages and then aligns the extracted segments. 
 
 ## Disclaimer
 
+[Heroes corpus](https://repositori.upf.edu/handle/10230/35572) is generated using this library. 
 
 ## Citing
 

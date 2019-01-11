@@ -2,7 +2,7 @@
 Prosodically annotated parallel speech corpus generation using dubbed movies. 
 
 ## Description 
-Dubbing is a carefully designed process where the movie content is first translated and then acted by professionals to reflect original movie lines. Dubbed media content is a valuable resource for generating prosodically rich parallel audio corpora. `movie2parallelDB` automates this process taking in audio tracks and subtitles and outputting aligned voice segments annotated with transcription and prosodic features. 
+Dubbed media content is a valuable resource for generating prosodically rich parallel audio corpora. `movie2parallelDB` automates this process taking in audio tracks and subtitles of a movie and outputting aligned voice segments with text and prosody annotation. 
 
 (Instructions below are for an earlier version of the library that is not currently maintained. For instructions of the latest version see `README.md`.)
 
@@ -21,7 +21,7 @@ Dubbing is a carefully designed process where the movie content is first transla
 	- Parallel speech+prosodic parameters directory - `<parallel-db-folder>`
 
 * Required installations on Linux system:
-	- Python 2.7, avconv, meteor
+	- Python 2.7, avconv, meteor, Praat
 
 * Required Python libraries:
 	- yandex_translate, numpy, nltk
