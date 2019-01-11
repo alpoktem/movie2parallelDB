@@ -6,7 +6,7 @@ Dubbed media content is a valuable resource for generating prosodically rich par
 
 A parallel audio corpus is obtained in three stages: (1) a monolingual step, where audio+text pairs are extracted from the movie in both languages using transcripts and cues in subtitles, (2) paralinguistic feature annotation (speaker information and prosody) and (3) alignment of monolingual material to extract the bilingual segments. Figure below illustrates the whole process on an example portion of a movie.
 
-![movie2parallelDB pipeline illustrated](https://raw.githubusercontent.com/alpoktem/movie2parallelDB/master/images/movie2parallelDB-example_pipeline.pdf)
+![movie2parallelDB pipeline illustrated](https://raw.githubusercontent.com/alpoktem/movie2parallelDB/master/images/movie2parallelDB-example_pipeline.png)
 
 ## Requirements
 
