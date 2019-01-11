@@ -18,7 +18,7 @@ A parallel audio corpus is obtained in three stages: (1) a monolingual step, whe
 Binary and model paths of MFA and Praat should be set in `src/paths.py`.
 
 * Required packages:
-	- [proscript](https://github.com/alpoktem/proscript), pydub, pysrt, nltk
+	- [proscript](https://github.com/alpoktem/proscript), pydub, pysrt, nltk, praatio
 
 ## Raw data preparation
 
