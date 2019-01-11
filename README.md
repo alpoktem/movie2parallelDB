@@ -14,22 +14,18 @@ A parallel audio corpus is obtained in three stages: (1) a monolingual step, whe
 	- Python 3.x
 	- [Montreal forced aligner](https://montreal-forced-aligner.readthedocs.io/en/latest/installation.html)
 	- [Praat](http://www.fon.hum.uva.nl/praat/)
+	- (mkvtoolnix)
 
 Binary and model paths of MFA and Praat should be set in `src/paths.py`.
 
-* Required packages:
+* Required Python packages:
 	- [proscript](https://github.com/alpoktem/proscript), pydub, pysrt, nltk, praatio
 
 ## Raw data preparation
 
 `movie2parallelDB` works with `wav` or `mp3` format audio files and `srt` format subtitles in both languages (original and dubbed) of the media file. MKV type video files often contain multiple audio tracks and subtitle information. `mkvinfo` can be used to get track information on the video file. Once track id's are known, audio tracks can be extracted using `mkvextract` tool of [mkvtoolnix](https://mkvtoolnix.download/): 
 
-`mkvextract <movie-mkv-file> tracks 1:movie_spa.aac 2:movie_eng.aac 3:sub_spa.srt 4:sub_eng.srt`
-
-In order to obtain mp3 format audio `ffmpeg` can be used:
-
-`ffmpeg -i movie_spa.aac -c:a libmp3lame -ac 2 -b:a 320k movie_spa.mp3`
-`ffmpeg -i movie_eng.aac -c:a libmp3lame -ac 2 -b:a 320k movie_eng.mp3`
+`mkvextract <movie-mkv-file> tracks 1:audio_spa 2:audio_eng 3:sub_spa.srt 4:sub_eng.srt` 
 
 Make sure that subtitles and audio match in both timing and transcription. Dubbing scripts might differ from subtitle transcripts. 
 
@@ -51,9 +47,13 @@ Parallel corpus generation is performed using parallel text files that contain p
 
 This process executes the monolingual process for both languages and then aligns the extracted segments. 
 
+Sample data is placed under `data/heroes` directory. Example running scripts are provided in `sample_run.sh`.
+
 ## Disclaimer
 
 [Heroes corpus](https://repositori.upf.edu/handle/10230/35572) is generated using this library. 
+
+Sample data is an excerpt from the TV series Heroes produced by Tailwind Productions, NBC Universal Television Studio (2006-2007) and Universal Media Studios (2007-2010). 
 
 ## Citing
 

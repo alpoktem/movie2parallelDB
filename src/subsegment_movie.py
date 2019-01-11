@@ -6,7 +6,7 @@ import re
 import csv
 import copy
 import shutil
-#import speech_recognition as sr
+import paths
 from datetime import datetime, date, time, timedelta
 import pysrt
 import nltk
@@ -34,14 +34,6 @@ DEFAULT_FILE_ID = "movie"
 DELETE_TMP_WAV = False
 NO_MFA_RUN = True #For saving time in debugging
 
-PRAAT_BINARY = "praat"
-MFA_ALIGN_BINARY = "/Users/alp/extSW/montreal-forced-aligner/bin/mfa_align"
-#MFA_ALIGN_BINARY = "/Users/alp/extSW/Montreal-Forced-Aligner-1.0.0/dist/montreal-forced-aligner/bin/mfa_align"
-MFA_LEXICON_ENG = "/Users/alp/extSW/montreal-forced-aligner/pretrained_models/en.dict"
-MFA_LM_ENG = "/Users/alp/extSW/montreal-forced-aligner/pretrained_models/english.zip"
-
-MFA_LEXICON_SPA = "/Users/alp/extSW/montreal-forced-aligner/pretrained_models/spanish.dict"
-MFA_LM_SPA = "/Users/alp/extSW/montreal-forced-aligner/pretrained_models/spanish.zip"
 
 '''
 Helper function for checking arguments.
@@ -138,9 +130,9 @@ def extract_segments_to_disk(proscript, audiofile, output_dir, extract_audio, ex
 			cutAudioWithPydub(audio_segment, segment.start_time, segment.end_time, segmentAudioFile, output_audio_format)
 		if extract_proscript:
 			segment_proscript = Proscript()
-			utils.reset_segment_times(segment)
+			utils.reset_segment_times(segment, reset_pause_at_beginning_end=False)
 			segment_proscript.add_segment(segment)
-			segment_proscript.to_csv(proscriptFile, segment_feature_set=['speaker_id'], word_feature_set=['id', "start_time", "end_time", "duration", "pause_before", "pause_after", "pos", "punctuation_before", "punctuation_after", "f0_mean_hz", "i0_mean_db", "f0_mean", "i0_mean"])
+			segment_proscript.to_csv(proscriptFile, segment_feature_set=['speaker_id'], word_feature_set=['id', "start_time", "end_time", "real_start_time", "real_end_time", "duration", "pause_before", "pause_after", "punctuation_before", "punctuation_after", "f0_mean_hz", "i0_mean_db", "f0_mean", "i0_mean"])
 
 		#write subtitle text to a separate file
 		with open(subScriptFile, 'w') as f:
@@ -152,7 +144,7 @@ def extract_proscript_data_to_disk(proscript, output_dir, language, cut_audio_po
 	proscript.segments_to_csv(segments_proscript_file, ['id', 'start_time', 'end_time', 'speaker_id', 'transcript'], delimiter='|')
 
 	words_proscript_file = os.path.join(output_dir, "%s.words-proscript.csv"%(proscript.id))
-	proscript.to_csv(words_proscript_file, segment_feature_set=['speaker_id'], word_feature_set=['id', "start_time", "end_time", "duration", "pause_before", "pause_after", "pos", "punctuation_before", "punctuation_after", "f0_mean_hz", "i0_mean_db", "f0_mean", "i0_mean"])
+	proscript.to_csv(words_proscript_file, segment_feature_set=['speaker_id'], word_feature_set=['id', "start_time", "end_time", "real_start_time", "real_end_time", "duration", "pause_before", "pause_after", "punctuation_before", "punctuation_after", "f0_mean_hz", "i0_mean_db", "f0_mean", "i0_mean"])
 
 	if cut_audio_portions or extract_segments_as_proscript:
 		extract_segments_to_disk(proscript, 
@@ -502,7 +494,7 @@ def fill_task_list(file_id, audio_file, sub_file, script_file, output_dir, lang)
 '''
 Uses all info to create proscript. Stores in files. Extracts each segment to separate wav files
 '''
-def process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, input_audio_format, transcribe_dub = False, cut_audio_portions=False, skip_mfa=False):
+def process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, input_audio_format, transcribe_dub = False, cut_audio_portions=False, extract_segments_as_proscript = False, skip_mfa=False):
 	print("Audio: %s\nSubtitles: %s\nLanguage: %s\nTranscript: %s"%(audiofile, subfile, movielang, scriptfile))
 	print("Reading subtitles...", end="")
 	srt_encoding = sniff_file_encoding(subfile)
@@ -533,10 +525,10 @@ def process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, in
 		utils.proscript_segments_to_textgrid(movie_proscript, outdir, file_prefix="%s_%s"%(movieid, movielang), speaker_segmented=False)
 		print("Running forced alignment...")
 		if movielang == 'eng':
-			utils.mfa_word_align(outdir,  transcript_type="TextGrid", mfa_align_binary=MFA_ALIGN_BINARY, lexicon=MFA_LEXICON_ENG, language_model=MFA_LM_ENG)
+			utils.mfa_word_align(outdir,  transcript_type="TextGrid", mfa_align_binary=paths.MFA_ALIGN_BINARY, lexicon=paths.MFA_LEXICON_ENG, language_model=paths.MFA_LM_ENG)
 		elif movielang == 'spa':
-			utils.mfa_word_align(outdir,  transcript_type="TextGrid", mfa_align_binary=MFA_ALIGN_BINARY, lexicon=MFA_LEXICON_SPA, language_model=MFA_LM_SPA)
-		utils.get_word_features_from_textgrid(movie_proscript, prosody_tag=True, praat_binary=PRAAT_BINARY)
+			utils.mfa_word_align(outdir,  transcript_type="TextGrid", mfa_align_binary=paths.MFA_ALIGN_BINARY, lexicon=paths.MFA_LEXICON_SPA, language_model=paths.MFA_LM_SPA)
+		utils.get_word_features_from_textgrid(movie_proscript, prosody_tag=True, praat_binary=paths.PRAAT_BINARY)
 
 	split_multispeaker_segments(movie_proscript, default_speaker_id = DEFAULT_SPEAKER_ID)
 	print("Getting speaker information...")
@@ -548,14 +540,14 @@ def process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, in
 
 	
 	#STORE DATA TO DISK
-	extract_proscript_data_to_disk(movie_proscript, outdir, movielang, cut_audio_portions = cut_audio_portions, extract_segments_as_proscript = False, output_audio_format = 'wav')
+	extract_proscript_data_to_disk(movie_proscript, outdir, movielang, cut_audio_portions = cut_audio_portions, extract_segments_as_proscript = extract_segments_as_proscript, output_audio_format = 'wav')
 
 	if DELETE_TMP_WAV:
 		os.remove(tmp_audiopath)
 
 	return movie_proscript
 
-def process_tasks(task_list, input_audio_format, transcribe_dub = False, cut_audio_portions = False, skip_mfa=False):
+def process_tasks(task_list, input_audio_format, transcribe_dub = False, cut_audio_portions = False, extract_segments_as_proscript = False, skip_mfa=False):
 	#Process files
 	for task in task_list:
 		movieid = task['file_id']
@@ -565,7 +557,7 @@ def process_tasks(task_list, input_audio_format, transcribe_dub = False, cut_aud
 		movielang = task['lang']
 		scriptfile = task['file_in_script']
 
-		yield process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, input_audio_format, transcribe_dub, cut_audio_portions, skip_mfa)
+		yield process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, input_audio_format, transcribe_dub, cut_audio_portions, extract_segments_as_proscript, skip_mfa)
 
 def main(options):
 	task_list = []
@@ -576,7 +568,7 @@ def main(options):
 		task_list = fill_task_list(DEFAULT_FILE_ID, options.audiofile, options.subfile, options.scriptfile, options.outdir, options.movielang)
 
 	#Process all files in task list
-	for movie_proscript in process_tasks(task_list, options.audioformat, options.transcribe_dub, cut_audio_portions=False, skip_mfa=options.skip_mfa):
+	for movie_proscript in process_tasks(task_list, options.audioformat, options.transcribe_dub, cut_audio_portions=True, extract_segments_as_proscript = True, skip_mfa=options.skip_mfa):
 		print("Processed %s"%movie_proscript.id)
 	
 if __name__ == "__main__":
@@ -591,6 +583,8 @@ if __name__ == "__main__":
 	parser.add_option("-t", "--transcribe", dest="transcribe_dub", action="store_true", default=False, help="send dubbed audio segments to wit.ai")
 	parser.add_option("-f", "--audioformat", dest="audioformat", default="mp3", help="Audio format (wav, mp3 etc.)", type="string")
 	parser.add_option("-m", "--skip_mfa", dest="skip_mfa", default=False, action="store_true", help='Flag to take already made word aligned textgrid in output folder')
+
+
 
 	(options, args) = parser.parse_args()
 

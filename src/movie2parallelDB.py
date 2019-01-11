@@ -302,7 +302,6 @@ def main(options):
 
 	assert len(process_list_eng) == len(process_list_spa), "Process lists are not the same length"
 
-	
 	for task_index, (proscript_eng, proscript_spa) in enumerate(zip(process_tasks(process_list_eng, options.input_audio_format, skip_mfa=options.skip_mfa), process_tasks(process_list_spa, options.input_audio_format, skip_mfa=options.skip_mfa))):
 		proscript_mapping = map_segments(proscript_spa, proscript_eng)
 

@@ -1,0 +1,1 @@
+heroes_s2_7	data/heroes/s2_7_excerpt/heroes_s2_7_excerpt_spa.mp3	data/heroes/s2_7_excerpt/heroes_s2_7_excerpt_spa.srt	NA	spa
