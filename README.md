@@ -53,7 +53,9 @@ Sample data is placed under `data/heroes` directory. Example running scripts are
 
 [Heroes corpus](https://repositori.upf.edu/handle/10230/35572) is generated using this library. 
 
-Sample data is an excerpt from the TV series Heroes produced by Tailwind Productions, NBC Universal Television Studio (2006-2007) and Universal Media Studios (2007-2010). 
+Sample data contains an excerpt from the TV series Heroes produced by Tailwind Productions, NBC Universal Television Studio (2006-2007) and Universal Media Studios (2007-2010) and from the film "The Man Who Knew Too Much" (1956) from Universal Pictures. 
+
+Please keep in mind that processing of copyrighted material must comply with Fair use principals. Corpora created with this software must be used within research and educational purposes. 
 
 ## Citing
 
