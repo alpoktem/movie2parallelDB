@@ -17,8 +17,8 @@ episode_list_eng=data/heroes/episode_list_eng.txt
 episode_list_spa=data/heroes/episode_list_spa.txt
 
 #To generate monolingual corpus
-# python src/subsegment_movie.py -a $audio_eng -s $sub_eng -o $output_eng -l eng -f $audio_format -c $script_eng
-# python src/subsegment_movie.py -a $audio_spa -s $sub_spa -o $output_spa -l spa -f $audio_format
+python src/subsegment_movie.py -a $audio_eng -s $sub_eng -o $output_eng -l eng -f $audio_format -c $script_eng
+python src/subsegment_movie.py -a $audio_spa -s $sub_spa -o $output_spa -l spa -f $audio_format
 
 # #To generate parallel corpus
 python src/movie2parallelDB.py -e $episode_list_eng -s $episode_list_spa -o $output
