@@ -560,6 +560,10 @@ def process_tasks(task_list, input_audio_format, transcribe_dub = False, cut_aud
 		yield process_movie(movieid, audiofile, subfile, scriptfile, outdir, movielang, input_audio_format, transcribe_dub, cut_audio_portions, extract_segments_as_proscript, skip_mfa)
 
 def main(options):
+	if options.audioformat != 'wav':
+		print("ERROR: Currently able to process only Wave format files. Please indicate 'wav' as audio format (-f)")
+		sys.exit(-1)
+
 	task_list = []
 	#Fill task list either from a file or from given audio, subtitle pair
 	if options.list_of_files:

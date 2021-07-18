@@ -294,6 +294,10 @@ def get_aligned_proscripts(mapping_list, proscript_spa, proscript_eng, copy_spea
 	return aligned_proscript_spa, aligned_proscript_eng
 
 def main(options):
+	if options.input_audio_format != 'wav':
+		print("ERROR: Currently able to process only Wave format files. Please indicate 'wav' as audio format (-f)")
+		sys.exit(-1)
+
 	process_list_eng = fill_task_list_from_file(options.list_of_files_eng, options.output_dir)
 	process_list_spa = fill_task_list_from_file(options.list_of_files_spa, options.output_dir)
 
@@ -342,7 +346,7 @@ if __name__ == "__main__":
 	parser.add_option("-e", "--filelist-eng", dest="list_of_files_eng", default=None, help="list of files to process in english. Each line with id, audio, xml, lang (tab separated)", type="string")	
 	parser.add_option("-s", "--filelist-spa", dest="list_of_files_spa", default=None, help="list of files to process in spanish. Each line with id, audio, xml, lang (tab separated)", type="string")	
 	parser.add_option("-o", "--output-dir", dest="output_dir", default=None, help="Output directory", type="string")
-	parser.add_option("-f", "--input-audio-format", dest="input_audio_format", default="mp3", help="Audio format (wav, mp3 etc.)", type="string")
+	parser.add_option("-f", "--audioformat", dest="input_audio_format", default="mp3", help="Audio format (wav, mp3 etc.)", type="string")
 	parser.add_option("-m", "--skip-mfa", dest="skip_mfa", default=False, action="store_true", help='Flag to take already made word aligned textgrid in output folder')
 
 	(options, args) = parser.parse_args()
