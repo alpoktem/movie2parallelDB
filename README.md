@@ -49,7 +49,7 @@ Monolingual segment extraction can be performed with the script `subsegment_movi
 
 `python src/subsegment_movie.py -a <audio_eng> -s <sub_eng> -o <output_directory> -l eng -f wav -c <script_eng>`
 
-Alternatively, a batch of files specified in a text file can be given to process. Each line in the file should contain the tab separated columns: movie_id, audio_path, srt_path, script_path (optional: put NA if not available), language_id. 
+Alternatively, a batch of files specified in a text file can be given to process. Each line in the file should contain the tab separated columns: `movie_id`, `audio_path`, `srt_path`, `script_path` (optional: put NA if not available), `language_id`. See `data/heroes/episode_list_eng.txt` for a sample.
 
 `python src/subsegment_movie.py -i <process-list_eng> -o <output_directory> -l eng -f wav -c <script_eng>`
 
@@ -59,7 +59,7 @@ Parallel corpus generation is performed using parallel text files that contain p
 
 This process executes the monolingual process for both languages and then aligns the extracted segments. 
 
-Sample data is placed under `data/heroes` directory. Example running scripts are provided in `sample_run.sh`.
+Sample data is placed under `data/heroes` directory. Example running scripts that process these are provided in `sample_run.sh`.
 
 ## Disclaimer
 
