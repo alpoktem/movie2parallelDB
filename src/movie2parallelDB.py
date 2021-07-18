@@ -297,9 +297,6 @@ def main(options):
 	process_list_eng = fill_task_list_from_file(options.list_of_files_eng, options.output_dir)
 	process_list_spa = fill_task_list_from_file(options.list_of_files_spa, options.output_dir)
 
-	print(process_list_spa)
-	print(process_list_eng)
-
 	assert len(process_list_eng) == len(process_list_spa), "Process lists are not the same length"
 
 	for task_index, (proscript_eng, proscript_spa) in enumerate(zip(process_tasks(process_list_eng, options.input_audio_format, skip_mfa=options.skip_mfa), process_tasks(process_list_spa, options.input_audio_format, skip_mfa=options.skip_mfa))):
