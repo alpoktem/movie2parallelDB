@@ -25,7 +25,7 @@ At the moment, the library is set to work only for this language pair. Contribut
 Binary and model paths of MFA and Praat should be set in `src/paths.py`.
 
 * Required Python packages:
-	- [proscript](https://github.com/alpoktem/proscript), pydub, pysrt, nltk, praatio
+	- [proscript](https://github.com/alpoktem/proscript), pydub, pysrt, nltk
 
 To install required packages:
 
